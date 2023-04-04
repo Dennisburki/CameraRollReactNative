@@ -1,12 +1,11 @@
-import { View, Text, Image, TouchableOpacity, Button, ScrollView, FlatList } from 'react-native'
+import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native'
 import React from 'react'
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import { useState, useEffect } from 'react'
 import { PermissionsAndroid, Platform } from "react-native";
 import CameraRoll from "@react-native-community/cameraroll";
 
-
-const App = () => {
+const UserScreen = () => {
 
   const Permission = async () => {
   PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE, {
@@ -98,30 +97,27 @@ useEffect(() => {
             </View>
       </TouchableOpacity>
 
-    
 
-      <View style={{flex:1}}>
-            <FlatList
-            data={photos}
-            renderItem={({item}) => {
-              return (
-                <Image
+     {/* <ScrollView>  
+       {photos.map((p, i) => {
+       return (
+        
+         <Image
+           key={i}
            style={{
              width: 150,
-             height: 150,
+             height: 150,      
            }}
-           source={{ uri: item.node.image.uri }}
+           source={{ uri: p.node.image.uri }}   
          />
-              )}}
-            keyExtractor={item => item.node.image.uri}
+       );
+     })}
 
-            
-            
-            />
-   </View>
+     </ScrollView> */}
+
 
     </View>
   )
 }
 
-export default App
+export default UserScreen
